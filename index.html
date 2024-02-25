@@ -127,10 +127,33 @@
           </li>
 
         </ul>
+
+        <div class="tab-content p-3 border-top-0 border">
+          <div class="tab-pane fade show active" id="query-params" role="tabpanel" aria-labelledby="query-params-tab">
+            <div data-query-params></div>
+            <button data-add-query-param-btn class="mt-2 btn btn-outline-success" type="button">Add</button>
+          </div>
+          <div class="tab-pane fade" id="request-headers" role="tabpanel" aria-labelledby="request-headers-tab">
+            <div data-request-headers></div>
+            <button data-add-request-header-btn class="mt-2 btn btn-outline-success" type="button">Add</button>
+          </div>
+          <div class="tab-pane fade" id="json" role="tabpanel" aria-labelledby="json-tab">
+            <div data-json-request-body class="overflow-auto" style="max-height: 200px;"></div>
+          </div>
+        </div>
+
       </form>
     </div>
   </div>
   
+  <template data-key-value-template>
+    <div class="input-group my-2" data-key-value-pair>
+      <input type="text" data-key class="form-control" placeholder="Key" />
+      <input type="text" data-value class="form-control" placeholder="Value" />
+      <button type="button" data-remove-btn class="btn btn-outline-danger">Remove</button>
+    </div>
+  </template>
+
 
   <!-- footer -->
       <div class="container">
