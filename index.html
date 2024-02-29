@@ -92,9 +92,9 @@
 
       <h2 align="center" class="pb-4 pt-4  display-5 fw-bold text-body-emphasis lh-1 mb-3">YOUR WORKSPACE</h2>
 
-      <form>
+      <form data-form>
         <div class="input-group mb-4 ">
-          <select class="form-select flex-grow-0 w-auto">
+          <select class="form-select flex-grow-0 w-auto" data-method>
             <option value="GET" selected>GET</option>
             <option value="POST">POST</option>
             <option value="PUT">PUT</option>
@@ -102,7 +102,7 @@
             <option value="DELETE">DELETE</option>
           </select>
 
-          <input type="url" placeholder="https://example.com" style="width: 80%;"/>
+          <input data-url type="url" placeholder="https://example.com" style="width: 80%;"/>
 
           <button type="submit" class="btn btn-primary">Send</button>
         </div>
@@ -143,6 +143,50 @@
         </div>
 
       </form>
+
+
+      <div class="mt-5 d-none" data-response-section>
+        <h3>Response</h3>
+        <div class="d-flex my-2">
+          <div class="me-3">
+            Status : <span data-status></span>
+          </div>
+          <div class="me-3">
+            Time : <span data-time></span> ms
+          </div>
+          <div class="me-3">
+            Size : <span data-size></span>
+          </div>
+        </div>
+
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="body-tab" data-bs-toggle="tab" data-bs-target="#body" type="button" role="tab" aria-controls="body" aria-selected="true">
+              Body
+            </button>
+          </li>
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="response-headers-tab" data-bs-toggle="tab" data-bs-target="#response-headers" type="button" role="tab" aria-controls="response-headers" aria-selected="false">
+              Headers
+            </button>
+          </li>
+
+
+        </ul>
+
+        <div class="tab-content p-3 border-top-0 border">
+          <div class="tab-pane fade show active" id="body" role="tabpanel" aria-labelledby="body-tab">
+            <div data-json-response-body class="overflow-auto" style="max-height: 200px;"></div>
+          </div>
+          <div class="tab-pane fade" id="response-headers" role="tabpanel" aria-labelledby="response-headers-tab">
+            <div style="display: grid; grid-template-columns: auto 1fr; gap: 5rem 2rem;"></div>
+          </div>
+        </div>
+
+      </div>
+        
+
     </div>
   </div>
   
