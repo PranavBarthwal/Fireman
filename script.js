@@ -34,15 +34,39 @@ form.addEventListener('submit', e => {
     .then((response) => {
         console.log(response)
         document.querySelector("[data-response-section").classList.remove('d-none')
-        // updateResponseDetails(response)
+        updateResponseDetails(response)
         // updateResponseEditor(response.data)
         updateResponseHeaders(response.headers)
+    })
+    .catch(e => {
+        console.error(e)
+        document.querySelector("[data-response-section").classList.remove('d-none')
+        updateResponseDetails(e.response)
+        // updateResponseEditor(e.response.data)
+        updateResponseHeaders(e.response.headers)
     })
 });
 
 
-function updateResponseHeaders(response) {
+function updateResponseDetails(response) {
+    document.querySelector('[data-status]').textContent = response.status
+    document.querySelector('[data-time]').textContent = response.headers.date
+
+}
+
+
+function updateResponseHeaders(headers) {
     responseHeadersContainer.innerHTML = ""
+
+    Object.entries(headers).forEach(([key, value]) => {
+        const keyElement = document.createElement('div')
+        keyElement.textContent = key
+        responseHeadersContainer.append(keyElement)
+
+        const valueElement = document.createElement('div')
+        valueElement.textContent = value
+        responseHeadersContainer.append(valueElement)
+    })
      
 }
 
