@@ -1,7 +1,7 @@
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
-import { updateLockfileHash } from 'snowpack/lib/cjs/util'
+
 
 const form = document.querySelector('[data-form]')
 const queryParamsContainer = document.querySelector('[data-query-params]')
