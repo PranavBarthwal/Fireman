@@ -1,11 +1,14 @@
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
+import { updateLockfileHash } from 'snowpack/lib/cjs/util'
 
 const form = document.querySelector('[data-form]')
 const queryParamsContainer = document.querySelector('[data-query-params]')
 const requestHeadersContainer = document.querySelector('[data-request-headers]')
 const keyValueTemplate = document.querySelector('[data-key-value-template]')
+const responseHeadersContainer = document.querySelector('[data-response-headers]')
+
 
 queryParamsContainer.append(createKeyValuePair())
 requestHeadersContainer.append(createKeyValuePair())
@@ -27,12 +30,21 @@ form.addEventListener('submit', e => {
         method: document.querySelector('[data-method]').value,
         params: keyValuePairsToObjects(queryParamsContainer),
         headers: keyValuePairsToObjects(requestHeadersContainer)
-    }).then((response) => {
+    })
+    .then((response) => {
         console.log(response)
-           
+        document.querySelector("[data-response-section").classList.remove('d-none')
+        // updateResponseDetails(response)
+        // updateResponseEditor(response.data)
+        updateResponseHeaders(response.headers)
     })
 });
 
+
+function updateResponseHeaders(response) {
+    responseHeadersContainer.innerHTML = ""
+     
+}
 
 
 function createKeyValuePair() {
