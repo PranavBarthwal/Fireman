@@ -1,6 +1,8 @@
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
+import prettyBytes from 'pretty-bytes'
+import SetupEditors from './setupEditor'
 
 
 const form = document.querySelector('[data-form]')
@@ -21,6 +23,8 @@ document.querySelector('[data-add-request-header-btn]').addEventListener("click"
     requestHeadersContainer.append(createKeyValuePair())
 })
 
+
+const { requestEditor, updateResponseEditor } = SetupEditors()
 
 
 axios.interceptors.request.use(request => {
@@ -54,7 +58,7 @@ form.addEventListener('submit', e => {
         console.log(response)
         document.querySelector("[data-response-section]").classList.remove('d-none')
         updateResponseDetails(response)
-        // updateResponseEditor(response.data)
+        updateResponseEditor(response.data)
         updateResponseHeaders(response.headers)
     })
 });
@@ -63,6 +67,10 @@ form.addEventListener('submit', e => {
 function updateResponseDetails(response) {
     document.querySelector('[data-status]').textContent = response.status
     document.querySelector('[data-time]').textContent = response.customData.time
+    document.querySelector("[data-size]").textContent = prettyBytes(
+        JSON.stringify(response.data).length +
+          JSON.stringify(response.headers).length
+      )
 }
 
 

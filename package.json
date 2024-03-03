@@ -11,6 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@codemirror/basic-setup": "^0.20.0",
+    "@codemirror/commands": "^6.3.3",
+    "@codemirror/lang-json": "^6.0.1",
+    "@codemirror/view": "^6.24.1",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
     "pretty-bytes": "^6.1.1"
