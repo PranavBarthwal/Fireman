@@ -62,3 +62,49 @@ axios({
         console.error(error);
     });
 ```
+
+## Axios Interceptor
+
+Axios interceptors are functions that Axios allows you to define globally, which will be called for every request or response made by Axios. This is useful for tasks such as adding headers to requests, handling authentication, logging, and more.
+
+Here's a basic example of how you can use Axios interceptors:
+
+```javascript
+const axios = require('axios');
+
+// Add a request interceptor
+axios.interceptors.request.use(function (config) {
+    // Do something before request is sent
+    console.log('Request Interceptor:', config);
+    return config;
+}, function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+});
+
+// Add a response interceptor
+axios.interceptors.response.use(function (response) {
+    // Do something with response data
+    console.log('Response Interceptor:', response);
+    return response;
+}, function (error) {
+    // Do something with response error
+    return Promise.reject(error);
+});
+
+// Make a request
+axios.get('https://jsonplaceholder.typicode.com/posts/1')
+    .then(function (response) {
+        console.log('Response:', response.data);
+    })
+    .catch(function (error) {
+        console.error('Error:', error);
+    });
+```
+
+In this example:
+
+- `axios.interceptors.request.use()` adds a function to be called before each request is sent. This function receives the request configuration object and must return either the configuration object or a Promise that resolves to the configuration object.
+- `axios.interceptors.response.use()` adds a function to be called when a response is received. This function receives the response object and must return either the response object or a Promise that resolves to the response object.
+
+With interceptors, you can modify requests and responses globally for your Axios instance, making them very useful for handling common tasks consistently across your application.

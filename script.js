@@ -22,6 +22,24 @@ document.querySelector('[data-add-request-header-btn]').addEventListener("click"
 })
 
 
+
+axios.interceptors.request.use(request => {
+    request.customData = request.customData || {}
+    request.customData.startTime = new Date().getTime()
+    return request
+})
+
+
+function updateEndTime(response) {
+    response.customData = response.customData || {}
+    response.customData.time = new Date().getTime() - response.config.customData.startTime
+    return response
+}
+
+axios.interceptors.response.use(updateEndTime, e => {
+     return Promise.reject(updateEndTime(e.response))
+})
+
 form.addEventListener('submit', e => {
     e.preventDefault()
 
@@ -31,32 +49,25 @@ form.addEventListener('submit', e => {
         params: keyValuePairsToObjects(queryParamsContainer),
         headers: keyValuePairsToObjects(requestHeadersContainer)
     })
+    .catch(e => e)                             // passing error as response so we can update the response details
     .then((response) => {
         console.log(response)
-        document.querySelector("[data-response-section").classList.remove('d-none')
+        document.querySelector("[data-response-section]").classList.remove('d-none')
         updateResponseDetails(response)
         // updateResponseEditor(response.data)
         updateResponseHeaders(response.headers)
-    })
-    .catch(e => {
-        console.error(e)
-        document.querySelector("[data-response-section").classList.remove('d-none')
-        updateResponseDetails(e.response)
-        // updateResponseEditor(e.response.data)
-        updateResponseHeaders(e.response.headers)
     })
 });
 
 
 function updateResponseDetails(response) {
     document.querySelector('[data-status]').textContent = response.status
-    document.querySelector('[data-time]').textContent = response.headers.date
-
+    document.querySelector('[data-time]').textContent = response.customData.time
 }
 
 
 function updateResponseHeaders(headers) {
-    responseHeadersContainer.innerHTML = ""
+    responseHeadersContainer.textContent = ""
 
     Object.entries(headers).forEach(([key, value]) => {
         const keyElement = document.createElement('div')
