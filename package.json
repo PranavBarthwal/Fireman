@@ -1,25 +1,24 @@
 {
-  "name": "fireman",
+  "name": "postman-clone",
   "version": "1.0.0",
-  "description": "Introducing Fireman 🔥 - A Postman clone for seamless API testing and collaboration. Simplify your workflow, ignite your development process! 🚀 <div align=\"center\">",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "snowpack dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "snowpack dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@codemirror/basic-setup": "^0.20.0",
-    "@codemirror/commands": "^6.3.3",
-    "@codemirror/lang-json": "^6.0.1",
-    "@codemirror/view": "^6.24.1",
-    "axios": "^1.6.7",
-    "bootstrap": "^5.3.3",
-    "pretty-bytes": "^6.1.1"
+    "@codemirror/basic-setup": "^0.18.2",
+    "@codemirror/commands": "^0.18.2",
+    "@codemirror/lang-json": "^0.18.0",
+    "@codemirror/view": "^0.18.16",
+    "axios": "^0.21.1",
+    "bootstrap": "^5.0.1",
+    "pretty-bytes": "^5.6.0"
   },
   "devDependencies": {
-    "snowpack": "^3.8.8"
+    "snowpack": "^3.5.6"
   }
 }
