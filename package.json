@@ -2,9 +2,9 @@
   "name": "fireman",
   "version": "1.0.0",
   "description": "Introducing Fireman 🔥 - A Postman clone for seamless API testing and collaboration. Simplify your workflow, ignite your development process! 🚀 <div align=\"center\">",
-  "main": "index.js",
+  "main": "script.js",
   "scripts": {
-    "start": "snowpack dev",
+    "start": "node script.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
